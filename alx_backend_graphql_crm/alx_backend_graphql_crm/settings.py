@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "crm"
+    "graphene_django",
+    "crm",
+    "graphql_crm",
+    "django_filters"
 ]
 
 MIDDLEWARE = [
@@ -80,6 +83,9 @@ DATABASES = {
     }
 }
 
+GRAPHENE = {
+    "SCHEMA": "graphql_crm.schema.schema"  # path to your main schema object
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
