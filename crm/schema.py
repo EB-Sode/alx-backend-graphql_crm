@@ -117,6 +117,7 @@ class CreateCustomer(graphene.Mutation):
             email=input.email.strip(),
             phone=(input.phone.strip() if input.phone else None)
         )
+        customer.save()
 
         return CreateCustomer(customer=customer, success=True, message="Customer created successfully.", errors=[])
 
@@ -167,13 +168,20 @@ class BulkCreateCustomers(graphene.Mutation):
                         phone=(data.phone.strip() if data.phone else None)
                     )
                     created.append(cust)
+
+                    for customer in cust:
+                        customer.save()
+
                 except Exception as e:
                     errors.append(ErrorType(
                         field=f"customer[{idx}]",
                         message=str(e)
                     ))
 
+
         msg = "Some customers created successfully." if errors else "All customers created successfully."
+
+
         return BulkCreateCustomers(customers=created, errors=errors, message=msg)
 
 
@@ -210,6 +218,9 @@ class CreateProduct(graphene.Mutation):
             price=price,
             stock=input.stock or 0
         )
+        
+        # ✅ Save explicitly
+        product.save()
 
         return CreateProduct(product=product, success=True, errors=[])
 
@@ -257,6 +268,11 @@ class CreateOrder(graphene.Mutation):
             total_amount=total
         )
         order.products.set(products)
+        # Create order
+
+        # ✅ Save explicitly
+        order.save()
+
 
         return CreateOrder(order=order, success=True, errors=[])
     
