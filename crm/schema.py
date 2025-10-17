@@ -90,7 +90,7 @@ class CreateCustomer(graphene.Mutation):
     class Arguments:
         input = CustomerInput(required=True)
 
-    customer = graphene.Field(lambda: CustomerType)
+    customer = graphene.Field(CustomerType)
     success = graphene.Boolean()
     message = graphene.String()
     errors = graphene.List(ErrorType)
