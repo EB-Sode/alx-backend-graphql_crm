@@ -1,5 +1,5 @@
 import graphene
-from crm.schema import CRMQuery  # adjust path if different
+from crm.schemaa import CRMQuery  # adjust path if different
 
 class Query(CRMQuery, graphene.ObjectType):
     pass
