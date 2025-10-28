@@ -1,1 +1,22 @@
-cenv
+# Virtual environments
+venv/
+cenv/
+.env/
+.envrc
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Log and temporary files
+*.log
+/tmp/
+*.sqlite3
+
+# IDE/project files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+
